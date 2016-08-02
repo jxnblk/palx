@@ -1,0 +1,31 @@
+{
+  "name": "palx",
+  "version": "1.0.0-beta.1",
+  "description": "Color palette generator and helper",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack -p",
+    "start": "webpack-dev-server",
+    "test": "ava -v"
+  },
+  "keywords": [
+    "color",
+    "color-palette"
+  ],
+  "author": "Brent Jackson",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "h0": "^1.0.0-beta.4",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "chroma-js": "^1.2.1",
+    "color": "^0.11.3",
+    "color-namer": "^1.1.0"
+  }
+}
