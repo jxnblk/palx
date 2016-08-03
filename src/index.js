@@ -21,7 +21,8 @@ const createRotate = baseColors => keys => {
       Object.defineProperty(obj, key, {
         get: () => {
           const [ h, s, l ] = chroma(baseColors[key]).hsl()
-          return chroma.hsl(h + n, s, l).hex()
+          const hue = (360 + h + n) % 360
+          return chroma.hsl(hue, s, l).hex()
         }
       })
     })
@@ -83,28 +84,28 @@ const palx = (
   input = {},
   {
     // Options
-    hues = 5,
+    hues = 6,
     lightnessScale = [
       0,
-      1 / 8,
-      1 / 4,
-      3 / 8,
-      1 / 2,
-      5 / 8,
-      3 / 4,
-      7 / 8,
-      1
+      4 * 1 / 8,
+      4 * 1 / 4,
+      4 * 3 / 8,
+      4 * 1 / 2,
+      4 * 5 / 8,
+      4 * 3 / 4,
+      4 * 7 / 8,
+      4 * 1
     ],
     saturationScale = [
       0,
-      1 / 8,
-      1 / 4,
-      3 / 8,
-      1 / 2,
-      5 / 8,
-      3 / 4,
-      7 / 8,
-      1
+      2 * 1 / 8,
+      2 * 1 / 4,
+      2 * 3 / 8,
+      2 * 1 / 2,
+      2 * 5 / 8,
+      2 * 3 / 4,
+      2 * 7 / 8,
+      2 * 1
     ],
     alphaScale = [
       0,
@@ -129,7 +130,8 @@ const palx = (
   const colors = {
     get base () {
       return base.hex()
-    }
+    },
+    keys: []
   }
 
   // Add hues
@@ -140,6 +142,7 @@ const palx = (
     const color = chroma.hsl(hue, s, l)
     // const { name } = colorNamer(color.hex()).roygbiv[0]
     const name = getName(hue)
+    colors.keys.push(name)
 
     if (!baseColors[name] && keys.indexOf(name) < 0) {
       baseColors[name] = color.hex()
@@ -169,6 +172,14 @@ const palx = (
 
   alphaScale.forEach((a, i) => {
     colors['alpha' + i] = colors.alpha(a)
+  })
+
+  saturationScale.forEach((s, i) => {
+    colors['saturate' + i] = colors.saturate(s)
+  })
+
+  saturationScale.forEach((s, i) => {
+    colors['desaturate' + i] = colors.desaturate(s)
   })
 
   lightnessScale.forEach((l, i) => {
