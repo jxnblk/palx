@@ -24,8 +24,6 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "chroma-js": "^1.2.1",
-    "color": "^0.11.3",
-    "color-namer": "^1.1.0"
+    "chroma-js": "^1.2.1"
   }
 }

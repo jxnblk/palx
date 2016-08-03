@@ -1,7 +1,6 @@
 
 import test from 'ava'
 import chroma from 'chroma-js'
-import Color from 'color'
 import pal from '../src'
 
 const src = {
@@ -35,17 +34,16 @@ test('returns a rotate function', t => {
   t.is(typeof colors.rotate(60), 'object')
 })
 
-/*
 test('rotates a color', t => {
   let rotated
   t.notThrows(() => {
     rotated = colors.rotate(60).blue
-    Color(rotated)
+    chroma(rotated)
   })
+  const [ h ] = chroma(src.blue).hsl()
   t.is(typeof rotated, 'string')
-  t.is(Color(src.blue).rotate(60).rgbString(), rotated)
+  t.is(h + 60, chroma(rotated).hsl()[0])
 })
-*/
 
 test('returns a darken function', t => {
   t.is(typeof colors.darken, 'function')
@@ -159,4 +157,5 @@ test('returns an lighten0-8 objects', t => {
 })
 
 test('adds five hues', t => {
+  console.log(colors)
 })

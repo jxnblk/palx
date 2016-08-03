@@ -13,36 +13,6 @@
  */
 
 const chroma = require('chroma-js')
-// const Color = require('color')
-const colorNamer = require('color-namer')
-
-const defaultOptions = {
-  hues: 5,
-  scales: {
-    l: [
-      0,
-      1 / 8,
-      1 / 4,
-      3 / 8,
-      1 / 2,
-      5 / 8,
-      3 / 4,
-      7 / 8,
-      1
-    ],
-    a: [
-      0,
-      1 / 8,
-      1 / 4,
-      3 / 8,
-      1 / 2,
-      5 / 8,
-      3 / 4,
-      7 / 8,
-      1
-    ]
-  }
-}
 
 const createRotate = baseColors => keys => {
   const rotate = (n) => {
@@ -61,8 +31,32 @@ const createRotate = baseColors => keys => {
   return rotate
 }
 
+const getName = hue => {
+  const mins = {
+    red:      0,
+    orange:  30,
+    yellow:  60,
+    green:   90,
+    cyan:    170,
+    blue:    200,
+    purple:  260,
+    magenta: 320,
+  }
+
+  const isMatch = n => min => {
+    return n >= min
+  }
+
+  const matcher = isMatch(hue)
+
+  const name = Object.keys(mins).reduce((a, b) => {
+    return (matcher(mins[b]) ? b : a)
+  }, null)
+
+  return name
+}
+
 const createColorFunction = func => baseColors => keys => {
-  // const getters = []
   const fn = (n) => {
     const obj = {}
     // Figure out how to hoist this up
@@ -70,7 +64,6 @@ const createColorFunction = func => baseColors => keys => {
       Object.defineProperty(obj, key, {
         get: () => {
           return chroma(baseColors[key])[func](n).css()
-          // return baseColors[key].clone()[func](n).rgbString()
         }
       })
     })
@@ -80,7 +73,6 @@ const createColorFunction = func => baseColors => keys => {
   return fn
 }
 
-// const createRotate = createColorFunction('rotate')
 const createDarken = createColorFunction('darken')
 const createLighten = createColorFunction('brighten')
 const createSaturate = createColorFunction('saturate')
@@ -129,7 +121,7 @@ const palx = (
 ) => {
   const keys = Object.keys(input)
   const [ k1 ] = keys
-  const base = chroma(input[k1]) // Color(input[k1])
+  const base = chroma(input[k1])
   const hueShift = 360 / hues
 
   const baseColors = {}
@@ -144,8 +136,10 @@ const palx = (
   for (var i = 0; i < hues; i++) {
     const [ h, s, l ] = base.hsl()
     const angle = i * hueShift
-    const color = chroma.hsl(h + angle, s, l) // base.rotate(angle)
-    const { name } = colorNamer(color.hex()).roygbiv[0]
+    const hue = (h + angle) % 360
+    const color = chroma.hsl(hue, s, l)
+    // const { name } = colorNamer(color.hex()).roygbiv[0]
+    const name = getName(hue)
 
     if (!baseColors[name] && keys.indexOf(name) < 0) {
       baseColors[name] = color.hex()
@@ -157,7 +151,7 @@ const palx = (
   }
 
   keys.forEach(key => {
-    baseColors[key] = chroma(input[key]).hex() // Color(input[key])
+    baseColors[key] = chroma(input[key]).hex()
 
     Object.defineProperty(colors, key, {
       get: () => {
