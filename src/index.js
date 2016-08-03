@@ -84,7 +84,7 @@ const palx = (
   input = {},
   {
     // Options
-    hues = 6,
+    hues = 5,
     lightnessScale = [
       0,
       4 * 1 / 8,
@@ -131,20 +131,20 @@ const palx = (
     get base () {
       return base.hex()
     },
-    keys: []
+    keys: [...keys]
   }
 
   // Add hues
   for (var i = 0; i < hues; i++) {
     const [ h, s, l ] = base.hsl()
-    const angle = i * hueShift
+    const angle = (1 + i) * hueShift
     const hue = (h + angle) % 360
     const color = chroma.hsl(hue, s, l)
     // const { name } = colorNamer(color.hex()).roygbiv[0]
     const name = getName(hue)
-    colors.keys.push(name)
 
     if (!baseColors[name] && keys.indexOf(name) < 0) {
+      colors.keys.push(name)
       baseColors[name] = color.hex()
 
       Object.defineProperty(colors, name, {

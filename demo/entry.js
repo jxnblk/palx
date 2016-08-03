@@ -7,7 +7,7 @@ const div = document.getElementById('app')
 const colors = palx({
   // blue: '#07c'
   //blue: '#0cf'
-  blue: '#08d'
+  blue: '#0ad'
 })
 
 console.log(colors)
