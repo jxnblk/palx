@@ -2,10 +2,10 @@
   "name": "palx",
   "version": "1.0.0-beta.1",
   "description": "Color palette generator and helper",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "build": "webpack -p",
-    "start": "webpack-dev-server",
+    "start": "micro -p 3000",
+    "dev": "nodemon --exec 'npm start'",
     "test": "ava -v"
   },
   "keywords": [
@@ -16,14 +16,14 @@
   "license": "MIT",
   "devDependencies": {
     "ava": "^0.15.2",
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-stage-0": "^6.5.0",
-    "h0": "^1.0.0-beta.4",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "cxs": "^2.1.0-b0",
+    "nodemon": "^1.11.0"
   },
   "dependencies": {
-    "chroma-js": "^1.2.1"
+    "axs": "^1.0.0-b2",
+    "chroma-js": "^1.2.1",
+    "micro": "^6.1.0",
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0"
   }
 }
