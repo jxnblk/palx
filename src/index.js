@@ -30,9 +30,11 @@ const createHues = (length = 12) => {
   }
 }
 
-const desaturate = hex => (
-  chroma(hex).desaturate(2).hex()
-)
+// Alter based on hue
+const desaturate = sat => hex => {
+  const amount = sat > .5 ? 4 : 2
+  return chroma(hex).desaturate(amount).hex()
+}
 
 const createBlack = hex => {
   return chroma(hex).desaturate(2).luminance(.05).hex()
@@ -77,7 +79,7 @@ const palx = (hex, options = {}) => {
 
   colors.push({
     key: 'gray',
-    value: createShades(desaturate('' + color.hex()))
+    value: createShades(desaturate(sat)('' + color.hex()))
   })
 
   hues.forEach(h => {
