@@ -6,6 +6,8 @@ const text = 'Palx: automatic UI color palette generator'
 
 module.exports = () => h(Flex, {
   css: {
+    width: 61,
+    height: 20,
     alignSelf: 'flex-end',
     alignItems: 'center'
   }

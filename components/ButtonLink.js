@@ -18,15 +18,14 @@ module.exports = props => h(Text,
       WebkitAppearance: 'none',
       appearance: 'none',
       color: 'inherit',
-      // color: '#fff',
       backgroundColor: props.colors ? props.colors.gray[3] : '#ccc',
       borderRadius: 3,
       ':hover': {
-        backgroundColor: props.color ? '#' + props.color : '#333',
+        backgroundColor: props.color ? props.color : '#333',
       },
       ':focus': {
         outline: 'none',
-        backgroundColor: props.color ? '#' + props.color : '#333',
+        backgroundColor: props.color ? props.color : '#333',
       }
     }, props.css)
   })

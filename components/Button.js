@@ -18,7 +18,7 @@ module.exports = props => h(Text,
       },
       ':focus': {
         outline: 'none',
-        color: props.color ? '#' + props.color : 'tomato'
+        color: props.color ? props.color : 'tomato'
       }
     }, props.css)
   })

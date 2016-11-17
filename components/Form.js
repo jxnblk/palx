@@ -6,6 +6,8 @@ const Label = require('./Label')
 const Input = require('./Input')
 const Button = require('./Button')
 
+const dehash = str => str.replace(/^#/, '')
+
 module.exports = ({
   color,
   colors
@@ -31,7 +33,7 @@ module.exports = ({
       h(Box, {
         width: 1,
         py: 3,
-        bg: '#' + color
+        bg: color
       })
     ),
     h(Flex, {
@@ -48,9 +50,8 @@ module.exports = ({
       h(Input, {
         id: 'color',
         name: 'color',
-        defaultValue: color,
+        defaultValue: dehash(color),
         colors,
-        py: 0,
         size: 1,
         css: {
           fontFamily: 'Roboto Mono'
