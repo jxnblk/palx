@@ -43,6 +43,7 @@ module.exports = (req, res) => {
   cxs.clear()
   cxs.sheet.flush()
 
+  // Add Content-Type headers for twitter
   return html({ css, body, color })
 }
 
