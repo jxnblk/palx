@@ -15,6 +15,7 @@ module.exports = (req, res) => {
       Location: '/' + q.color
     })
     res.end()
+    return
   }
 
   const [ , color ] = pathname.split('/')
