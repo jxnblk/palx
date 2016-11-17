@@ -5,6 +5,7 @@ const { createElement: h } = require('react')
 const { renderToStaticMarkup: render } = require('react-dom/server')
 const { cxs } = require('axs')
 const App = require('./components/App')
+const html = require('./html')
 
 module.exports = (req, res) => {
   const { pathname, query } = url.parse(req.url)
@@ -18,7 +19,7 @@ module.exports = (req, res) => {
 
   const [ , color ] = pathname.split('/')
 
-  const html = render(h(App, {
+  const body = render(h(App, {
     color: color || '07c'
   }))
   const css = cxs.css
@@ -26,8 +27,6 @@ module.exports = (req, res) => {
   cxs.clear()
   cxs.sheet.flush()
 
-  return `<!DOCTYPE html>
-  <style>${css}</style>
-  ${html}`
+  return html({ css, body })
 }
 
