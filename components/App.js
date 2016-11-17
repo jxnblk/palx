@@ -6,6 +6,7 @@ const Container = require('./Container')
 const Header = require('./Header')
 const Form = require('./Form')
 const Colors = require('./Colors')
+const Downloads = require('./Downloads')
 const Footer = require('./Footer')
 const css = require('./css')
 
@@ -14,12 +15,13 @@ module.exports = ({
 }) => {
   const colors = palx('#' + color)
 
-  css({ colors })
+  css({ color, colors })
 
   return h(Container, null,
     h(Header),
     h(Form, { color, colors }),
     h(Colors, { colors }),
+    h(Downloads, { color, colors }),
     h(Footer, { color })
   )
 }

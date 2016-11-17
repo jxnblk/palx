@@ -1,7 +1,7 @@
 
 const { cxs } = require('axs')
 
-module.exports = ({ colors }) => {
+module.exports = ({ color, colors }) => {
   cxs('*', {
     boxSizing: 'border-box'
   })
@@ -18,6 +18,10 @@ module.exports = ({ colors }) => {
     src: `url(${roboto}) format('woff')`,
     fontStyle: 'normal',
     fontWeight: 400
+  })
+
+  cxs('input::selection', {
+    background: '#' + color
   })
 }
 

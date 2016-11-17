@@ -5,9 +5,7 @@ const ChipRow = require('./ChipRow')
 
 module.exports = ({
   colors
-}) => h(Box, {
-    mx: -1
-  },
+}) => h(Box, {},
   Object.keys(colors).map((key, i) => {
     const value = colors[key]
     return Array.isArray(value) ? (

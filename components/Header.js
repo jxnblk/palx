@@ -14,7 +14,8 @@ module.exports = () => h(Box, {
     h(Heading, {
       level: 1,
       size: 3,
-      mr: 2
+      mr: 2,
+      caps: true
     }, 'Palx'),
     h(Text, {
       bold: true
