@@ -91,8 +91,9 @@ const palx = (hex, options = {}) => {
     })
   })
 
-  const obj = colors
-    .reduce(toObj, {})
+  const obj = Object.assign({
+    base: hex,
+  }, colors.reduce(toObj, {}))
 
   return obj
 }
