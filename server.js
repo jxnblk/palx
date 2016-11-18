@@ -14,6 +14,15 @@ const scss = require('./scss')
 
 const robots = `User-agent: Twitterbot\n  Disallow:`
 
+const isColor = hex => {
+  try {
+    const color = chroma(hex)
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
 module.exports = (req, res) => {
   const { pathname, query } = url.parse(req.url)
   const q = parse(query)
@@ -32,6 +41,14 @@ module.exports = (req, res) => {
 
   const [ , base ] = pathname.split(/[\/\.]/)
   const color = base ? '#' + base : '#07c'
+
+  if (!isColor(color)) {
+    console.log('!isColor')
+    const err = new Error('Bad request')
+    err.statusCode = 400
+    throw err
+  }
+
   const colors = palx(color)
 
   if (/card\.png$/.test(pathname)) {
