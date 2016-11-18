@@ -35,16 +35,20 @@ module.exports = (req, res) => {
     return card({ color, colors }, res)
   }
 
+  res.setHeader('Content-Type', 'text/html')
+  res.write(html.head({ color }))
+
   const body = render(h(App, {
     color,
     colors
   }))
   const css = cxs.css
 
+  res.write(html.css({ css }))
+  res.write(body)
+  res.end()
+
   cxs.clear()
   cxs.sheet.flush()
-
-  // Add Content-Type headers for twitter
-  return html({ css, body, color })
 }
 
