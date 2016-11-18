@@ -20,12 +20,15 @@ module.exports = ({
   h(Flex, {
     is: 'form',
     action: '/',
-    mx: -1
+    mx: -1,
+    css: {
+      flexWrap: 'wrap'
+    }
   },
     h(Flex, {
       width: [
+        1,
         1/3,
-        null,
         1/5,
       ],
       px: 1
@@ -38,8 +41,8 @@ module.exports = ({
     ),
     h(Flex, {
       width: [
+        1,
         2/3,
-        null,
         4/5,
       ],
       px: 1

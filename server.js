@@ -8,6 +8,9 @@ const palx = require('./src/index')
 const App = require('./components/App')
 const html = require('./html')
 const card = require('./card')
+const json = require('./json')
+const css = require('./css')
+const scss = require('./scss')
 
 const robots = `User-agent: Twitterbot\n  Disallow:`
 
@@ -27,7 +30,7 @@ module.exports = (req, res) => {
     return robots
   }
 
-  const [ , base ] = pathname.split('/')
+  const [ , base ] = pathname.split(/[\/\.]/)
   const color = base ? '#' + base : '#07c'
   const colors = palx(color)
 
@@ -35,20 +38,30 @@ module.exports = (req, res) => {
     return card({ color, colors }, res)
   }
 
+  if (/\.json$/.test(pathname)) {
+    return json(req, res, { colors })
+  }
+  if (/\.css/.test(pathname)) {
+    return css(req, res, { colors })
+  }
+  if (/\.scss/.test(pathname)) {
+    return scss(req, res, { colors })
+  }
+
   res.setHeader('Content-Type', 'text/html')
+
   res.write(html.head({ color }))
 
   const body = render(h(App, {
     color,
     colors
   }))
-  const css = cxs.css
-
-  res.write(html.css({ css }))
-  res.write(body)
-  res.end()
-
+  const styles = cxs.css
   cxs.clear()
   cxs.sheet.flush()
+
+  res.write(html.css({ css: styles }))
+  res.write(body)
+  res.end()
 }
 

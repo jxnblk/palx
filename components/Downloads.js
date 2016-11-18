@@ -3,6 +3,8 @@ const { createElement: h } = require('react')
 const { Flex, Box, Heading, Text } = require('axs')
 const Button = require('./ButtonLink')
 
+const dehash = str => str.replace(/^#/, '')
+
 module.exports = ({ color, colors }) => h(Box, {
     is: 'section',
     py: 4,
@@ -14,22 +16,25 @@ module.exports = ({ color, colors }) => h(Box, {
     size: 4,
   }, 'Download'),
   h(Button, {
-    href: '#',
+    href: `/${dehash(color)}.json`,
+    target: '_blank',
+    color,
+    colors,
+    mr: 2
+  }, 'JSON'),
+  h(Button, {
+    href: `/${dehash(color)}.css`,
+    target: '_blank',
     color,
     colors,
     mr: 2
   }, 'CSS'),
   h(Button, {
-    href: '#',
+    href: `/${dehash(color)}.scss`,
+    target: '_blank',
     color,
     colors,
     mr: 2
-  }, 'Sass'),
-  h(Button, {
-    href: '#',
-    color,
-    colors,
-    mr: 2
-  }, 'JSON')
+  }, 'Sass')
 )
 

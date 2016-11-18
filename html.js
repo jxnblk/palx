@@ -17,9 +17,6 @@ module.exports = {
   `),
   css: ({ css }) => min(`
     <style>${css}</style>
-  `),
-  body: ({ body }) => min(`
-    ${body}
   `)
 }
 
