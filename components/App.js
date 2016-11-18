@@ -1,7 +1,6 @@
 
 const { createElement: h } = require('react')
 const { Flex, Box, cxs } = require('axs')
-const palx = require('../src/index')
 const Container = require('./Container')
 const Header = require('./Header')
 const Form = require('./Form')
@@ -11,10 +10,9 @@ const Footer = require('./Footer')
 const css = require('./css')
 
 module.exports = ({
-  color = '07c'
+  color,
+  colors
 }) => {
-  const colors = palx('#' + color)
-
   css({ color, colors })
 
   return h(Container, null,

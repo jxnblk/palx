@@ -10,10 +10,10 @@ module.exports = props => h(Text, Object.assign({}, props, {
   css: {
     textDecoration: 'none',
     ':focus': {
-      color: '#' + props.color
+      color: props.color
     },
     ':hover': {
-      color: '#' + props.color
+      color: props.color
     }
   }
 }))

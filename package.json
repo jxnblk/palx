@@ -2,9 +2,9 @@
   "name": "palx",
   "version": "1.0.0-beta.1",
   "description": "Color palette generator and helper",
-  "main": "server.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "micro -p 3000",
+    "start": "micro -p 3000 server.js",
     "dev": "nodemon --exec 'npm start'",
     "test": "ava -v"
   },
@@ -24,6 +24,7 @@
     "micro": "^6.1.0",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
-    "reline": "^1.0.0-beta.3"
+    "reline": "^1.0.0-beta.3",
+    "repng": "^1.0.0-b4"
   }
 }

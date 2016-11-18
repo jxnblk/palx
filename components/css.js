@@ -21,7 +21,7 @@ module.exports = ({ color, colors }) => {
   })
 
   cxs('input::selection', {
-    background: '#' + color
+    background: color
   })
 }
 
