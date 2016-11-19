@@ -62,7 +62,7 @@ module.exports = ({
           id: 'color',
           name: 'color',
           defaultValue: dehash(color),
-          pattern: '([0-9a-f]{3}){1,2}',
+          pattern: '([0-9A-Fa-f]{3}){1,2}',
           colors,
           size: 1,
           css: {
