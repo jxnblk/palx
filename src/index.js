@@ -79,7 +79,6 @@ const palx = (hex, options = {}) => {
 
   colors.push({
     key: 'gray',
-    // value: createShades(desaturate(sat)('' + color.hex()))
     value: createShades(desat(1/8)('' + color.hex()))
   })
 
