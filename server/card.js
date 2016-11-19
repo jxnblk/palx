@@ -4,6 +4,10 @@
 const { createElement: h } = require('react')
 const repng = require('repng')
 
+const css = `
+body{margin:0}
+`
+
 const Card = ({ color, colors }) => {
   const key = Object.keys(colors)[2]
   const secondaryColors = colors[key]
@@ -12,13 +16,17 @@ const Card = ({ color, colors }) => {
     },
     h('style', {
       dangerouslySetInnerHTML: {
-        __html: ''
+        __html: css
       }
     }),
     h('svg', {
       viewBox: '0 0 64 48',
       width: 512,
       height: 384,
+      style: {
+        display: 'block',
+        margin: 0
+      }
     },
       h('rect', { width: 64, height: 48, fill: color }),
       h('g', null,
