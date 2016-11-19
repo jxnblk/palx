@@ -14,7 +14,7 @@ module.exports = () => h(Flex, {
   }
 },
   h(Box, {
-    width: [ 1, 1/2 ],
+    width: [ 1, null, 5/8 ],
     px: 3,
     py: 1
   },

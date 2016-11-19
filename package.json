@@ -1,7 +1,7 @@
 {
   "name": "palx",
   "version": "1.0.0-beta.1",
-  "description": "Color palette generator and helper",
+  "description": "Automatic UI Color Palette Generator",
   "main": "dist/index.js",
   "scripts": {
     "start": "micro -p 3000 server.js",

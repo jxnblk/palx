@@ -2,10 +2,12 @@
 const { createElement: h } = require('react')
 const { Flex, Box, Text } = require('axs')
 
+const cap = str => str.charAt(0).toUpperCase() + str.slice(1)
+
 module.exports = ({ colors }) => {
   return h(Flex, {
       mx: -1,
-      my: 3,
+      my: [ 2, 3 ],
       css: {
         flexWrap: 'wrap'
       }
@@ -17,7 +19,8 @@ module.exports = ({ colors }) => {
         key,
         is: 'a',
         href: '#' + key,
-        p: 1,
+        px: 1,
+        mb: 1,
         width: [
           1/5,
           1/7,
@@ -35,7 +38,7 @@ module.exports = ({ colors }) => {
           size: 6,
           center: true,
           color: colors[key][8]
-        }, key)
+        }, cap(key))
       )
     ))
   )

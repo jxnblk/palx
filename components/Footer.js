@@ -9,6 +9,11 @@ module.exports = ({ color }) => h(Box, {
     mb: 4
   },
   h(Link, {
+    href: 'https://github.com/jxnblk/palx',
+    color,
+    mr: 2,
+  }, 'GitHub'),
+  h(Link, {
     href: 'http://jxnblk.com',
     color
   }, 'Made by Jxnblk')

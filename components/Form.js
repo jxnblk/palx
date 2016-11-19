@@ -13,11 +13,13 @@ module.exports = ({
   color,
   colors
 }) => {
+  /*
   const hsl = chroma(color).hsl()
     .map((n, i) => i === 0
       ? Math.round(n)
       : Math.round(n * 100)
     ).join(', ')
+    */
 
   return h(Box, {
       mb: 3
@@ -79,8 +81,8 @@ module.exports = ({
           })
         )
       )
-    ),
-    h(Text, { right: true, size: 6 }, `hsl(${hsl})`)
+    ) //,
+    // h(Text, { right: true, size: 6 }, `hsl(${hsl})`)
   )
 }
 

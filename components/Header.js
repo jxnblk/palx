@@ -10,12 +10,12 @@ module.exports = ({ color, colors, }) => {
 
   return h(Box, {
       is: 'header',
-      py: 3
+      py: [ 0, 1, 3 ]
     },
     h(Flex, {
       mb: 2,
       css: {
-        alignItems: 'center',
+        alignItems: 'baseline',
         '@media screen and (max-width:32em)': {
           flexWrap: 'wrap'
         }
