@@ -3,8 +3,8 @@ const names = [
   'red',      // 0
   'orange',   // 30
   'yellow',   // 60
-  'green',    // 90
-  'seafoam',  // 120
+  'lime',     // 90
+  'green',    // 120
   'teal',     // 150
   'cyan',     // 180
   'blue',     // 210

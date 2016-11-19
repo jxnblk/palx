@@ -6,7 +6,10 @@ const Chip = require('./Chip')
 module.exports = ({
   name,
   values
-}) => h(Box, { mb: 3 },
+}) => h(Box, {
+    id: name,
+    mb: 4
+  },
   h(Heading, {
     size: 4,
     caps: true,
