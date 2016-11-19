@@ -2,9 +2,9 @@
 const url = require('url')
 const { parse } = require('querystring')
 const chroma = require('chroma-js')
-const palx = require('./src/index')
+const palx = require('../src/index')
 
-const chunkResponse = require('./chunk-response')
+const chunk = require('./chunk')
 const card = require('./card')
 const json = require('./json')
 const css = require('./css')
@@ -62,6 +62,6 @@ module.exports = (req, res) => {
     return scss(req, res, { colors })
   }
 
-  chunkResponse(req, res, { color, colors })
+  chunk(req, res, { color, colors })
 }
 

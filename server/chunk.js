@@ -3,7 +3,7 @@ const { createElement: h } = require('react')
 const { renderToStaticMarkup: render } = require('react-dom/server')
 const { cxs } = require('axs')
 
-const html = require('./html')
+const head = require('./head')
 const Header = require('./components/Header')
 const Form = require('./components/Form')
 const Toc = require('./components/Toc')
@@ -22,7 +22,7 @@ const renderChunk = (Comp, props) => {
 module.exports = (req, res, { color, colors }) => {
   res.setHeader('Content-Type', 'text/html')
 
-  res.write(html.head({ color }))
+  res.write(head({ color }))
 
   res.write('<div style="max-width:1280px;margin:auto;padding:32px">')
 

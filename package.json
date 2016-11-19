@@ -4,7 +4,7 @@
   "description": "Automatic UI Color Palette Generator",
   "main": "dist/index.js",
   "scripts": {
-    "start": "micro -p 3000 server.js",
+    "start": "micro -p 3000 server/index.js",
     "dev": "nodemon --exec 'npm start'",
     "test": "ava -v"
   },

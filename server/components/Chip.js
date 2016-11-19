@@ -13,8 +13,7 @@ module.exports = ({ name, color }) => h(Box, {
     width: [
       1/2,
       1/3,
-      1/5,
-      // 1/10,
+      1/5
     ]
   },
   h(Box, {},

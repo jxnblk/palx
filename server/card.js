@@ -7,11 +7,6 @@ const repng = require('repng')
 const Card = ({ color, colors }) => {
   const key = Object.keys(colors)[2]
   const secondaryColors = colors[key]
-    /*
-  const secondaryColors = Object.keys(colors)
-    .filter(key => Array.isArray(colors[key]))
-    .map(key => colors[key][7])
-    */
 
   return h('div', {
     },

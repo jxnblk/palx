@@ -1,5 +1,5 @@
 
-const flatten = require('./src/flatten')
+const flatten = require('../src/flatten')
 
 const createDef = ({ key, value }) => `$${key}: ${value}`
 
