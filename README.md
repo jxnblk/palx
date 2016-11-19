@@ -21,4 +21,23 @@ palx('#07c')
 // 10 luminance steps
 ```
 
+## About
+
+Inspired by [Open Color](https://yeun.github.io/open-color/),
+Palx takes a single input color,
+then spreads the hue across the color spectrum in 12 steps,
+and spreads each hue across 10 luminance steps.
+Palx also desaturates the main color to create shades of gray and a black that are based off the original color.
+
+### Related
+
+- [Hello Color](http://jxnblk.com/hello-color)
+- [Colorable](http://jxnblk.com/colorable)
+- [Monochrome](https://monochrome.jxnblk.com)
+- [Grays](http://jxnblk.com/grays)
+- [Shade](http://jxnblk.com/shade)
+- [Spectral](http://jxnblk.com/Spectral)
+- [Open Color](https://yeun.github.io/open-color)
+
 MIT License
+
