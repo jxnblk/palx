@@ -16,16 +16,16 @@
   "license": "MIT",
   "devDependencies": {
     "ava": "^0.15.2",
-    "nodemon": "^1.11.0"
-  },
-  "dependencies": {
     "axs": "^1.0.0-b3",
-    "chroma-js": "^1.2.1",
-    "micro": "^6.1.0",
+    "nodemon": "^1.11.0",
     "objss": "^1.0.0-1",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
     "reline": "^1.0.0-beta.3",
     "repng": "^1.0.0-b4"
+  },
+  "dependencies": {
+    "chroma-js": "^1.2.1",
+    "micro": "^6.1.0"
   }
 }
