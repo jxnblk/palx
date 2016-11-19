@@ -1,196 +1,101 @@
 
-/*
- * API
- *
- * const colors = palx({ blue: '#07c' })
- *
- * colors.blue
- * colors.rotate(30).blue
- * colors.darken(.5).blue
- *
- * colors.dark1.blue
- *
- */
-
 const chroma = require('chroma-js')
+const hueName = require('./hue-name')
 
-const createRotate = baseColors => keys => {
-  const rotate = (n) => {
-    const obj = {}
-    Object.keys(baseColors).forEach(key => {
-      Object.defineProperty(obj, key, {
-        get: () => {
-          const [ h, s, l ] = chroma(baseColors[key]).hsl()
-          const hue = (360 + h + n) % 360
-          return chroma.hsl(hue, s, l).hex()
-        }
+const lums = [
+  9,
+  8,
+  7,
+  6,
+  5,
+  4,
+  3,
+  2,
+  1,
+  0
+]
+  .map(n => n + .5)
+  .map(n => n / 10)
+
+const createHues = (length = 12) => {
+  const hueLength = length
+  const hueStep = 360 / hueLength
+  return base => {
+    const hues = Array.from({ length: hueLength })
+      .map((n, i) => {
+        return Math.floor((base + (i * hueStep)) % 360)
       })
-    })
-    return obj
-  }
 
-  return rotate
+    return hues
+  }
 }
 
-const getName = hue => {
-  const mins = {
-    red:      0,
-    orange:  30,
-    yellow:  60,
-    green:   90,
-    cyan:    170,
-    blue:    200,
-    purple:  260,
-    magenta: 320,
+const desat = n => hex => {
+  const [ h, s, l ] = chroma(hex).hsl()
+  return chroma.hsl(h, n, l).hex()
+}
+
+const createBlack = hex => {
+  const d = desat(1/8)(hex)
+  return chroma(d).luminance(.05).hex()
+}
+
+const createShades = hex => {
+  return lums.map(lum => {
+    return chroma(hex).luminance(lum).hex()
+  })
+}
+
+// Mappers
+const toHex = ({ key, value }) => ({ key, value: value.hex() })
+
+const keyword = hex => {
+  const [ hue, sat ] = chroma(hex).hsl()
+  if (sat < .5) {
+    return 'gray'
   }
-
-  const isMatch = n => min => {
-    return n >= min
-  }
-
-  const matcher = isMatch(hue)
-
-  const name = Object.keys(mins).reduce((a, b) => {
-    return (matcher(mins[b]) ? b : a)
-  }, null)
-
+  const name = hueName(hue)
   return name
 }
 
-const createColorFunction = func => baseColors => keys => {
-  const fn = (n) => {
-    const obj = {}
-    // Figure out how to hoist this up
-    Object.keys(baseColors).forEach(key => {
-      Object.defineProperty(obj, key, {
-        get: () => {
-          return chroma(baseColors[key])[func](n).css()
-        }
-      })
-    })
-    return obj
-  }
-
-  return fn
+// Reducer
+const toObj = (a = {}, color) => {
+  const key = a[color.key] ? color.key + '2' : color.key
+  a[key] = color.value
+  return a
 }
 
-const createDarken = createColorFunction('darken')
-const createLighten = createColorFunction('brighten')
-const createSaturate = createColorFunction('saturate')
-const createDesaturate = createColorFunction('desaturate')
-const createAlpha = createColorFunction('alpha')
+const palx = (hex, options = {}) => {
+  const color = chroma(hex)
+  const colors = []
+  const [ hue, sat, lte ] = color.hsl()
 
-const palx = (
-  input = {},
-  {
-    // Options
-    hues = 5,
-    lightnessScale = [
-      0,
-      4 * 1 / 8,
-      4 * 1 / 4,
-      4 * 3 / 8,
-      4 * 1 / 2,
-      4 * 5 / 8,
-      4 * 3 / 4,
-      4 * 7 / 8,
-      4 * 1
-    ],
-    saturationScale = [
-      0,
-      2 * 1 / 8,
-      2 * 1 / 4,
-      2 * 3 / 8,
-      2 * 1 / 2,
-      2 * 5 / 8,
-      2 * 3 / 4,
-      2 * 7 / 8,
-      2 * 1
-    ],
-    alphaScale = [
-      0,
-      1 / 8,
-      1 / 4,
-      3 / 8,
-      1 / 2,
-      5 / 8,
-      3 / 4,
-      7 / 8,
-      1
-    ]
-  } = {}
-) => {
-  const keys = Object.keys(input)
-  const [ k1 ] = keys
-  const base = chroma(input[k1])
-  const hueShift = 360 / hues
+  const hues = createHues(12)(hue)
 
-  const baseColors = {}
+  colors.push({
+    key: 'black',
+    value: createBlack('' + color.hex())
+  })
 
-  const colors = {
-    get base () {
-      return base.hex()
-    },
-    keys: [...keys]
-  }
+  colors.push({
+    key: 'gray',
+    value: createShades(desat(1/8)('' + color.hex()))
+  })
 
-  // Add hues
-  for (var i = 0; i < hues; i++) {
-    const [ h, s, l ] = base.hsl()
-    const angle = (1 + i) * hueShift
-    const hue = (h + angle) % 360
-    const color = chroma.hsl(hue, s, l)
-    // const { name } = colorNamer(color.hex()).roygbiv[0]
-    const name = getName(hue)
-
-    if (!baseColors[name] && keys.indexOf(name) < 0) {
-      colors.keys.push(name)
-      baseColors[name] = color.hex()
-
-      Object.defineProperty(colors, name, {
-        get: () => baseColors[name]
-      })
-    }
-  }
-
-  keys.forEach(key => {
-    baseColors[key] = chroma(input[key]).hex()
-
-    Object.defineProperty(colors, key, {
-      get: () => {
-        return baseColors[key]
-      }
+  hues.forEach(h => {
+    const c = chroma.hsl(h, sat, lte)
+    const key = keyword(c)
+    colors.push({
+      key,
+      value: createShades('' + c.hex())
     })
   })
 
-  colors.rotate = createRotate(baseColors)(keys)
-  colors.darken = createDarken(baseColors)(keys)
-  colors.lighten = createLighten(baseColors)(keys)
-  colors.saturate = createSaturate(baseColors)(keys)
-  colors.desaturate = createDesaturate(baseColors)(keys)
-  colors.alpha = createAlpha(baseColors)(keys)
+  const obj = Object.assign({
+    base: hex,
+  }, colors.reduce(toObj, {}))
 
-  alphaScale.forEach((a, i) => {
-    colors['alpha' + i] = colors.alpha(a)
-  })
-
-  saturationScale.forEach((s, i) => {
-    colors['saturate' + i] = colors.saturate(s)
-  })
-
-  saturationScale.forEach((s, i) => {
-    colors['desaturate' + i] = colors.desaturate(s)
-  })
-
-  lightnessScale.forEach((l, i) => {
-    colors['darken' + i] = colors.darken(l)
-  })
-
-  lightnessScale.forEach((l, i) => {
-    colors['lighten' + i] = colors.lighten(l)
-  })
-
-  return colors
+  return obj
 }
 
 module.exports = palx
