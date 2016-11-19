@@ -15,10 +15,8 @@ const names = [
   'red',      // 360
 ]
 
-const offset = 0 // 29
-
 const hueName = h => {
-  const i = Math.round((h + offset) / 30) // - 1
+  const i = Math.round((h - 2) / 30)
   const name = names[i]
   return name
 }
