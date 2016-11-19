@@ -13,6 +13,7 @@ module.exports = ({
   h(Heading, {
     size: 4,
     caps: true,
+    mb: 1,
   }, name),
   h(Flex, {
       mx: -1,

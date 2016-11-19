@@ -15,11 +15,14 @@ module.exports = props => h(Text,
       color: 'inherit',
       backgroundColor: 'transparent',
       border: 0,
+      borderRadius: 0,
       WebkitAppearance: 'none',
       appearance: 'none',
+      transition: 'background-color .2s ease-out',
+      // ':invalid': {},
       ':focus': {
         outline: 'none',
-        backgroundColor: props.colors ? props.colors.gray[1] : '#eee'
+        backgroundColor: props.colors ? props.colors.gray[0] : '#eee'
       }
     }, props.css)
   })

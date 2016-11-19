@@ -20,6 +20,7 @@ module.exports = props => h(Text,
       color: 'inherit',
       backgroundColor: props.colors ? props.colors.gray[3] : '#ccc',
       borderRadius: 3,
+      transition: 'background-color .2s ease-out',
       ':hover': {
         backgroundColor: props.color ? props.color : '#333',
       },

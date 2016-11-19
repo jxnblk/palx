@@ -47,19 +47,27 @@ module.exports = ({
           2/3,
           4/5,
         ],
-        px: 1
+        px: 1,
+        css: {
+          fontFamily: '"Roboto Mono", Menlo, monospace'
+        }
       },
         h(Text, {
-          size: 1
+          size: 1,
+          css: {
+            position: 'relative'
+          }
         }, '#'),
         h(Input, {
           id: 'color',
           name: 'color',
           defaultValue: dehash(color),
+          pattern: '([0-9a-f]{3}){1,2}',
           colors,
           size: 1,
           css: {
-            fontFamily: '"Roboto Mono", Menlo, monospace'
+            paddingLeft: '1em',
+            marginLeft: '-1em'
           }
         }),
         h(Button, {

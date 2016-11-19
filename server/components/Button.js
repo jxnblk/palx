@@ -13,12 +13,14 @@ module.exports = props => h(Text,
       border: 0,
       WebkitAppearance: 'none',
       appearance: 'none',
+      transition: '.2s ease-out',
+      transitionProperty: 'color, background-color',
       ':hover': {
-        backgroundColor: props.colors ? props.colors.gray[1] : '#eee'
+        color: props.color ? props.color : '#07c'
       },
       ':focus': {
         outline: 'none',
-        color: props.color ? props.color : 'tomato'
+        color: props.color ? props.color : '#07c'
       }
     }, props.css)
   })

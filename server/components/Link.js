@@ -9,7 +9,9 @@ module.exports = props => h(Text, Object.assign({}, props, {
   color: 'inherit',
   css: {
     textDecoration: 'none',
+    transition: 'color .2s ease-out',
     ':focus': {
+      outline: 'none',
       color: props.color
     },
     ':hover': {

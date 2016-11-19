@@ -20,14 +20,23 @@ module.exports = ({ colors }) => {
         is: 'a',
         href: '#' + key,
         px: 1,
-        mb: 1,
+        py: 1,
         width: [
           1/5,
           1/7,
           1/13
         ],
         css: {
-          textDecoration: 'none'
+          textDecoration: 'none',
+          transition: '.2s ease-out',
+          transitionProperty: 'color, background-color',
+          ':hover': {
+            backgroundColor: colors[key][1]
+          },
+          ':focus': {
+            outline: 'none',
+            backgroundColor: colors[key][1]
+          }
         }
       },
         h(Box, {
