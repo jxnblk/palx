@@ -9,7 +9,7 @@ body{margin:0}
 `
 
 const Card = ({ color, colors }) => {
-  const key = Object.keys(colors)[2]
+  const key = Object.keys(colors)[3]
   const secondaryColors = colors[key]
 
   return h('div', {
