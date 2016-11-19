@@ -57,7 +57,7 @@ module.exports = ({
         colors,
         size: 1,
         css: {
-          fontFamily: 'Roboto Mono'
+          fontFamily: '"Roboto Mono", Menlo, monospace'
         }
       }),
       h(Button, {

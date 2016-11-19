@@ -8,6 +8,7 @@ module.exports = () => h(Box, {
     py: 3
   },
   h(Flex, {
+    mb: 2,
     css: {
       alignItems: 'baseline',
       '@media screen and (max-width:32em)': {
@@ -29,7 +30,10 @@ module.exports = () => h(Box, {
     h(Box, {
       css: { flex: '1 1 auto' }
     }),
-    h(Tweet)
+    h(Tweet, { my: 1 })
+  ),
+  h(Text, { },
+    'Provide a single color value and Palx returns a full-spectrum color palette, well suited for UI design and data visualizations that works harmoniously with brand colors'
   )
 )
 

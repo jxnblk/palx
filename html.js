@@ -14,6 +14,7 @@ module.exports = {
     <meta name='twitter:title' content='Palx ${color}'>
     <meta name='twitter:description' content='Automatic UI Color Palette Generator'>
     <meta name='twitter:image' content='https://palx.jxnblk.com/${color.replace(/^#/, '')}/card.png'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto+Mono:400'>
   `),
   css: ({ css }) => min(`
     <style>${css}</style>
