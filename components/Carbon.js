@@ -14,16 +14,16 @@ module.exports = () => h(Box, {
 
 const cx = {
   '@media screen and (min-width:48em) and (min-height:40em)': {
-    position: 'fixed',
-    right: 0,
-    bottom: 0,
-    padding: 8,
-    margin: 8,
-    maxWidth: 146,
-    '.carbon-img': {
-      float: 'none',
-      marginRight: 0,
-    }
+    // position: 'fixed',
+    // right: 0,
+    // bottom: 0,
+    // padding: 8,
+    // margin: 8,
+    // maxWidth: 146,
+    // '.carbon-img': {
+      // float: 'none',
+      // marginRight: 0,
+    // }
   },
   maxWidth: 320,
   '#carbonads': {

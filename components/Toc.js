@@ -3,7 +3,13 @@ const { createElement: h } = require('react')
 const { Flex, Box, Text } = require('axs')
 
 module.exports = ({ colors }) => {
-  return h(Flex, { mx: -1, mb: 4 },
+  return h(Flex, {
+      mx: -1,
+      my: 3,
+      css: {
+        flexWrap: 'wrap'
+      }
+    },
     Object.keys(colors)
     .filter(key => Array.isArray(colors[key]))
     .map(key => (
@@ -13,6 +19,8 @@ module.exports = ({ colors }) => {
         href: '#' + key,
         p: 1,
         width: [
+          1/5,
+          1/7,
           1/13
         ],
         css: {

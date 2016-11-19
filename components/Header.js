@@ -15,7 +15,7 @@ module.exports = ({ color, colors, }) => {
     h(Flex, {
       mb: 2,
       css: {
-        alignItems: 'baseline',
+        alignItems: 'center',
         '@media screen and (max-width:32em)': {
           flexWrap: 'wrap'
         }
@@ -36,9 +36,6 @@ module.exports = ({ color, colors, }) => {
         css: { flex: '1 1 auto' }
       }),
       h(Tweet, { my: 1 })
-    ),
-    h(Text, { },
-      'Provide a single color value and Palx returns a full-spectrum color palette, well suited for UI design and data visualizations that works harmoniously with brand colors'
     )
   )
 }
