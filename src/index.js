@@ -48,12 +48,12 @@ const createShades = hex => {
 
 const spreadLum = hex => {
   const baselum = chroma(hex).luminance()
-  const lowerstep = baselum / 4
   const upperstep = (1 - baselum) / 6
+  const lowerstep = baselum / 5
   const lower = [
     3, 2, 1, 0
   ].map(step => {
-    return chroma(hex).luminance((step + .5) * lowerstep).hex()
+    return chroma(hex).luminance((step + 1) * lowerstep).hex()
   })
   const upper = [
     5, 4, 3, 2, 1, 0
@@ -87,6 +87,7 @@ const toObj = (a = {}, color) => {
 
 const palx = (hex, options = {}) => {
   const {
+    // Need to figure out a better name for this option
     luminance = 'split' // 'scale'
   } = options
 
