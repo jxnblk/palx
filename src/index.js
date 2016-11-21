@@ -46,6 +46,26 @@ const createShades = hex => {
   })
 }
 
+const spreadLum = hex => {
+  const baselum = chroma(hex).luminance()
+  const lowerstep = baselum / 4
+  const upperstep = (1 - baselum) / 6
+  const lower = [
+    3, 2, 1, 0
+  ].map(step => {
+    return chroma(hex).luminance((step + .5) * lowerstep).hex()
+  })
+  const upper = [
+    5, 4, 3, 2, 1, 0
+  ].map(step => {
+    return chroma(hex).luminance(baselum + step * upperstep).hex()
+  })
+  return [
+    ...upper,
+    ...lower,
+  ]
+}
+
 // Mappers
 const toHex = ({ key, value }) => ({ key, value: value.hex() })
 
@@ -66,6 +86,10 @@ const toObj = (a = {}, color) => {
 }
 
 const palx = (hex, options = {}) => {
+  const {
+    luminance = 'split' // 'scale'
+  } = options
+
   const color = chroma(hex)
   const colors = []
   const [ hue, sat, lte ] = color.hsl()
@@ -85,9 +109,12 @@ const palx = (hex, options = {}) => {
   hues.forEach(h => {
     const c = chroma.hsl(h, sat, lte)
     const key = keyword(c)
+    const value = luminance === 'scale'
+      ? createShades('' + c.hex())
+      : spreadLum('' + c.hex())
     colors.push({
       key,
-      value: createShades('' + c.hex())
+      value
     })
   })
 
