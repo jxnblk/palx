@@ -4,6 +4,7 @@
   "description": "Automatic UI Color Palette Generator",
   "main": "dist/index.js",
   "scripts": {
+    "prepublish": "babel src --out-dir dist",
     "start": "micro -p 3000 server/index.js",
     "dev": "nodemon --exec 'npm start'",
     "test": "ava -v"
@@ -17,6 +18,9 @@
   "devDependencies": {
     "ava": "^0.15.2",
     "axs": "^1.0.0-b3",
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.2",
+    "babel-preset-es2015": "^6.18.0",
     "nodemon": "^1.11.0",
     "objss": "^1.0.0-1",
     "react": "^15.4.0",
