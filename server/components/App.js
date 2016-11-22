@@ -1,6 +1,6 @@
 
 const { createElement: h } = require('react')
-const { Flex, Box, cxs } = require('axs')
+const { Flex, Box, cxs } = require('axs-ui')
 const Container = require('./Container')
 const Header = require('./Header')
 const Form = require('./Form')

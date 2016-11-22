@@ -1,6 +1,6 @@
 
 const { createElement: h } = require('react')
-const { Flex, Box, cxs } = require('axs')
+const { Flex, Box, cxs } = require('axs-ui')
 const ChipRow = require('./ChipRow')
 
 module.exports = ({

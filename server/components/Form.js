@@ -1,7 +1,7 @@
 
 const { createElement: h } = require('react')
 const chroma = require('chroma-js')
-const { Flex, Box, Text } = require('axs')
+const { Flex, Box, Text } = require('axs-ui')
 const { Arrow } = require('reline')
 const Label = require('./Label')
 const Input = require('./Input')

@@ -1,6 +1,6 @@
 
 const { createElement: h } = require('react')
-const { Flex, Box, Heading, Text } = require('axs')
+const { Flex, Box, Heading, Text } = require('axs-ui')
 const Button = require('./ButtonLink')
 
 const dehash = str => str.replace(/^#/, '')

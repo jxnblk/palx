@@ -1,6 +1,6 @@
 
 const { createElement: h } = require('react')
-const { Flex, Box, Heading, Text } = require('axs')
+const { Flex, Box, Heading, Text } = require('axs-ui')
 const Tweet = require('./Tweet')
 
 const css = require('./css')

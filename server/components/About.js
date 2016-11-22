@@ -1,6 +1,6 @@
 
 const { createElement: h } = require('react')
-const { Flex, Box, Text } = require('axs')
+const { Flex, Box, Text } = require('axs-ui')
 const Carbon = require('./Carbon')
 
 const Space = () => h(Box, { css: { flex: '1 1 auto' } })

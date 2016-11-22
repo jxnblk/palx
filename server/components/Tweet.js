@@ -1,6 +1,6 @@
 
 const { createElement: h } = require('react')
-const { Flex, Box } = require('axs')
+const { Flex, Box } = require('axs-ui')
 
 const text = 'Palx: automatic UI color palette generator'
 

@@ -1,6 +1,6 @@
 
 const { createElement: h } = require('react')
-const { Flex, Box, Heading, Text } = require('axs')
+const { Flex, Box, Heading, Text } = require('axs-ui')
 const Link = require('./Link')
 
 module.exports = ({ color }) => h(Box, {

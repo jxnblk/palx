@@ -1,6 +1,6 @@
 
 const { createElement: h } = require('react')
-const { Flex, Box, Heading } = require('axs')
+const { Flex, Box, Heading } = require('axs-ui')
 const Chip = require('./Chip')
 
 module.exports = ({

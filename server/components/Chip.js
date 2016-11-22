@@ -1,6 +1,6 @@
 
 const { createElement: h } = require('react')
-const { Flex, Box, Text } = require('axs')
+const { Flex, Box, Text } = require('axs-ui')
 
 const cap = str => str.charAt(0).toUpperCase() + str.slice(1)
 
