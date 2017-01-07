@@ -14,6 +14,11 @@ module.exports = ({ color }) => h(Box, {
     mr: 2,
   }, 'GitHub'),
   h(Link, {
+    href: 'https://www.npmjs.com/package/palx',
+    color,
+    mr: 2,
+  }, 'npm'),
+  h(Link, {
     href: 'http://jxnblk.com',
     color
   }, 'Made by Jxnblk')
