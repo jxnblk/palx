@@ -85,11 +85,21 @@ const palx = (hex, options = {}) => {
   hues.forEach(h => {
     const c = chroma.hsl(h, sat, lte)
     const key = keyword(c)
+    if (options.replace && options.colors && options.colors.hasOwnProperty(key)) return
     colors.push({
       key,
       value: createShades('' + c.hex())
     })
   })
+
+  if (options.colors) {
+    Object.keys(options.colors).forEach(key => {
+      colors.push({
+        key,
+        value: createShades('' + options.colors[key])
+      })
+    })
+  }
 
   const obj = Object.assign({
     base: hex,
