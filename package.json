@@ -29,6 +29,7 @@
     "repng": "^1.0.0-b4"
   },
   "dependencies": {
+    "array-from": "^2.1.1",
     "chroma-js": "^1.2.1",
     "micro": "^6.1.0"
   }

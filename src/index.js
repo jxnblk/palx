@@ -1,6 +1,7 @@
 
 const chroma = require('chroma-js')
 const hueName = require('./hue-name')
+const arrayFrom = require('array-from')
 
 const lums = [
   9,
@@ -21,7 +22,7 @@ const createHues = (length = 12) => {
   const hueLength = length
   const hueStep = 360 / hueLength
   return base => {
-    const hues = Array.from({ length: hueLength })
+    const hues = arrayFrom({ length: hueLength })
       .map((n, i) => {
         return Math.floor((base + (i * hueStep)) % 360)
       })
@@ -31,12 +32,12 @@ const createHues = (length = 12) => {
 }
 
 const desat = n => hex => {
-  const [ h, s, l ] = chroma(hex).hsl()
+  const [h, s, l] = chroma(hex).hsl()
   return chroma.hsl(h, n, l).hex()
 }
 
 const createBlack = hex => {
-  const d = desat(1/8)(hex)
+  const d = desat(1 / 8)(hex)
   return chroma(d).luminance(.05).hex()
 }
 
@@ -50,7 +51,7 @@ const createShades = hex => {
 const toHex = ({ key, value }) => ({ key, value: value.hex() })
 
 const keyword = hex => {
-  const [ hue, sat ] = chroma(hex).hsl()
+  const [hue, sat] = chroma(hex).hsl()
   if (sat < .5) {
     return 'gray'
   }
@@ -68,7 +69,7 @@ const toObj = (a = {}, color) => {
 const palx = (hex, options = {}) => {
   const color = chroma(hex)
   const colors = []
-  const [ hue, sat, lte ] = color.hsl()
+  const [hue, sat, lte] = color.hsl()
 
   const hues = createHues(12)(hue)
 
@@ -79,7 +80,7 @@ const palx = (hex, options = {}) => {
 
   colors.push({
     key: 'gray',
-    value: createShades(desat(1/8)('' + color.hex()))
+    value: createShades(desat(1 / 8)('' + color.hex()))
   })
 
   hues.forEach(h => {
