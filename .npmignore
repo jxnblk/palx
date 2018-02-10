@@ -1,4 +1,5 @@
-
+.nyc_output
+coverage
 src
 server
 test
