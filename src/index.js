@@ -17,14 +17,19 @@ const lums = [
   .map(n => n + .5)
   .map(n => n / 10)
 
-const createHues = (length = 12) => {
-  const hueLength = length
-  const hueStep = 360 / hueLength
+const createArray = length => {
+  const arr = []
+  for (let i = 0; i < length; i++) {
+    arr.push(i)
+  }
+  return arr
+}
+
+const createHues = length => {
+  const hueStep = 360 / length
   return base => {
-    const hues = Array.from({ length: hueLength })
-      .map((n, i) => {
-        return Math.floor((base + (i * hueStep)) % 360)
-      })
+    const hues = createArray(length)
+      .map(n => Math.floor((base + (n * hueStep)) % 360))
 
     return hues
   }
@@ -47,8 +52,6 @@ const createShades = hex => {
 }
 
 // Mappers
-const toHex = ({ key, value }) => ({ key, value: value.hex() })
-
 const keyword = hex => {
   const [ hue, sat ] = chroma(hex).hsl()
   if (sat < .5) {
@@ -59,7 +62,7 @@ const keyword = hex => {
 }
 
 // Reducer
-const toObj = (a = {}, color) => {
+const toObj = (a, color) => {
   const key = a[color.key] ? color.key + '2' : color.key
   a[key] = color.value
   return a
