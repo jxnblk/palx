@@ -1,42 +1,37 @@
-
 const { createElement: h } = require('react')
-const { Flex, Box, Heading, Text } = require('axs')
+const Base = require('./Base')
 const Tweet = require('./Tweet')
 
-const css = require('./css')
-
-module.exports = ({ color, colors, }) => {
-  css({ color, colors })
-
-  return h(Box, {
+module.exports = ({ color, colors, }) =>
+  h(Base, {
       is: 'header',
       py: [ 0, 1, 3 ]
     },
-    h(Flex, {
+    h(Base, {
       mb: 2,
       css: {
+        display: 'flex',
         alignItems: 'baseline',
         '@media screen and (max-width:32em)': {
           flexWrap: 'wrap'
         }
       }
     },
-      h(Heading, {
-        level: 1,
-        size: 3,
+      h(Base, {
+        is: 'h1',
+        fontSize: 2,
         mr: 2,
         caps: true
       }, 'Palx'),
-      h(Text, {
-        bold: true
+      h(Base, {
+        fontWeight: 'bold'
       },
         'Automatic UI Color Palette Generator'
       ),
-      h(Box, {
+      h(Base, {
         css: { flex: '1 1 auto' }
       }),
       h(Tweet, { my: 1 })
     )
   )
-}
 

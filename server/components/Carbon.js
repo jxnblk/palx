@@ -1,8 +1,7 @@
-
 const { createElement: h } = require('react')
-const { Box } = require('axs')
+const Base = require('./Base')
 
-module.exports = () => h(Box, {
+module.exports = () => h(Base, {
   bg: 'white',
   css: cx
 },
@@ -13,44 +12,44 @@ module.exports = () => h(Box, {
 )
 
 const cx = {
-  maxWidth: 320,
-  '#carbonads': {
+  maxWidth: '320px',
+  '& #carbonads': {
     display: 'inline-block',
-    fontSize: 12,
+    fontSize: '12px',
     lineHeight: 1.25,
     textAlign: 'left',
-    maxWidth: 320,
+    maxWidth: '320px',
     backgroundColor: 'white',
-    a: {
+    '& a': {
       textDecoration: 'none',
       color: 'inherit',
       ':hover': {}
     },
-    '> span': {
+    '& > span': {
       display: 'block',
-      ':before': {
+      '&:before': {
         content: '""',
         display: 'table'
       },
-      ':after': {
+      '&:after': {
         content: '""',
         display: 'table',
         clear: 'both'
       },
     },
-    '.carbon-img': {
+    '& .carbon-img': {
       float: 'left',
-      marginRight: 8,
-      '> img': {
+      marginRight: '8px',
+      '& > img': {
         display: 'block'
       }
     },
-    '.carbon-text': {
+    '& .carbon-text': {
       overflow: 'hidden'
     },
-    '.carbon-poweredby': {
+    '& .carbon-poweredby': {
       display: 'block',
-      marginTop: 4,
+      marginTop: '4px',
       opacity: .5
     }
   },

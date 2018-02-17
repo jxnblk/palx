@@ -1,14 +1,13 @@
-
 const { createElement: h } = require('react')
-const { Text } = require('axs')
+const Base = require('./Base')
 
-module.exports = props => h(Text,
+module.exports = props => h(Base,
   Object.assign({}, {
     is: 'a',
     px: 2,
     py: 1,
-    size: 5,
-    bold: true,
+    fontSize: 1,
+    fontWeight: 'bold',
   }, props, {
     css: Object.assign({
       fontFamily: 'inherit',

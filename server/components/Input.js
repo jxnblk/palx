@@ -1,8 +1,7 @@
-
 const { createElement: h } = require('react')
-const { Text } = require('axs')
+const Base = require('./Base')
 
-module.exports = props => h(Text,
+module.exports = props => h(Base,
   Object.assign({}, props, {
     is: 'input',
     css: Object.assign({

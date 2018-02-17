@@ -1,9 +1,8 @@
-
 const { createElement: h } = require('react')
-const { Flex, Box, Heading, Text } = require('axs')
+const Base = require('./Base')
 const Link = require('./Link')
 
-module.exports = ({ color }) => h(Box, {
+module.exports = ({ color }) => h(Base, {
     is: 'footer',
     py: 4,
     mb: 4

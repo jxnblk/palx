@@ -1,6 +1,5 @@
-
 const { createElement: h } = require('react')
-const { Flex, Box, Text } = require('axs')
+const Base = require('./Base')
 
 const cap = str => str.charAt(0).toUpperCase() + str.slice(1)
 
@@ -8,28 +7,32 @@ const format = str => {
   return cap(str).replace(/\d$/, ' $&')
 }
 
-module.exports = ({ name, color }) => h(Box, {
-    p: 1,
+module.exports = ({ name, color }) => h(Base, {
+    p: 2,
     width: [
       1/2,
       1/3,
       1/5
     ]
   },
-  h(Box, {},
-    h(Box, {
+  h(Base, {},
+    h(Base, {
       px: 3,
-      py: 3,
+      py: 4,
       bg: color
     }),
-    h(Flex, {},
-      h(Text, {
-        size: 6,
-        bold: true
+    h(Base, {
+      css: {
+        display: 'flex'
+      }
+    },
+      h(Base, {
+        fontSize: 0,
+        fontWeight: 'bold'
       }, format(name)),
-      h(Box, { css: { flex: '1 1 auto' } }),
-      h(Text, {
-        size: 6
+      h(Base, { css: { flex: '1 1 auto' } }),
+      h(Base, {
+        fontSize: 0
       }, color)
     )
   )
