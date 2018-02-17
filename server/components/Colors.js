@@ -1,11 +1,10 @@
-
 const { createElement: h } = require('react')
-const { Flex, Box, cxs } = require('axs')
 const ChipRow = require('./ChipRow')
+const Base = require('./Base')
 
 module.exports = ({
   colors
-}) => h(Box, {},
+}) => h(Base, {},
   Object.keys(colors).map((key, i) => {
     const value = colors[key]
     return Array.isArray(value) ? (

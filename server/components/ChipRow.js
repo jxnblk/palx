@@ -1,23 +1,23 @@
-
 const { createElement: h } = require('react')
-const { Flex, Box, Heading } = require('axs')
+const Base = require('./Base')
 const Chip = require('./Chip')
 
 module.exports = ({
   name,
   values
-}) => h(Box, {
+}) => h(Base, {
     id: name,
     mb: 4
   },
-  h(Heading, {
-    size: 4,
-    caps: true,
+  h(Base, {
+    is: 'h2',
+    fontSize: 2,
     mb: 1,
   }, name),
-  h(Flex, {
-      mx: -1,
+  h(Base, {
+      mx: -2,
       css: {
+        display: 'flex',
         flexWrap: 'wrap'
       }
     },

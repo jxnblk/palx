@@ -1,19 +1,19 @@
-
 const { createElement: h } = require('react')
-const { Flex, Box, Heading, Text } = require('axs')
+const Base = require('./Base')
 const Button = require('./ButtonLink')
 
 const dehash = str => str.replace(/^#/, '')
 
-module.exports = ({ color, colors }) => h(Box, {
+module.exports = ({ color, colors }) => h(Base, {
     is: 'section',
     py: 4,
     mb: 4
   },
-  h(Heading, {
+  h(Base, {
+    is: 'h2',
     mb: 2,
     caps: true,
-    size: 4,
+    fontSize: 2,
   }, 'Download'),
   h(Button, {
     href: `/${dehash(color)}.json`,

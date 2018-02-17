@@ -1,11 +1,11 @@
-
 const { createElement: h } = require('react')
-const { Flex, Box } = require('axs')
+const Base = require('./Base')
 
 const text = 'Palx: automatic UI color palette generator'
 
-module.exports = (props) => h(Flex, Object.assign({
+module.exports = (props) => h(Base, Object.assign({
   css: {
+    display: 'flex',
     width: 61,
     height: 20,
     alignItems: 'center'
@@ -16,7 +16,7 @@ module.exports = (props) => h(Flex, Object.assign({
     src: 'https://platform.twitter.com/widgets.js',
     async: true
   }),
-  h(Box, {
+  h(Base, {
     is: 'a',
     className: 'twitter-share-button',
     href: `https://twitter.com/intent/tweet?text=${encodeURI(text)}`,

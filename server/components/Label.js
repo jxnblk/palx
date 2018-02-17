@@ -1,9 +1,8 @@
-
 const { createElement: h } = require('react')
-const { Text } = require('axs')
+const Base = require('./Base')
 
-module.exports = props => h(Text, Object.assign({}, props, {
+module.exports = props => h(Base, Object.assign({}, props, {
   is: 'label',
-  size: 6,
+  fontSize: 0,
 }))
 

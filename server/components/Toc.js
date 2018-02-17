@@ -1,26 +1,26 @@
-
 const { createElement: h } = require('react')
-const { Flex, Box, Text } = require('axs')
+const Base = require('./Base')
 
 const cap = str => str.charAt(0).toUpperCase() + str.slice(1)
 
 module.exports = ({ colors }) => {
-  return h(Flex, {
-      mx: -1,
+  return h(Base, {
+      mx: -2,
       my: [ 2, 3 ],
       css: {
+        display: 'flex',
         flexWrap: 'wrap'
       }
     },
     Object.keys(colors)
     .filter(key => Array.isArray(colors[key]))
     .map(key => (
-      h(Box, {
+      h(Base, {
         key,
         is: 'a',
         href: '#' + key,
-        px: 1,
-        py: 1,
+        px: 2,
+        py: 2,
         width: [
           1/5,
           1/7,
@@ -39,13 +39,13 @@ module.exports = ({ colors }) => {
           }
         }
       },
-        h(Box, {
-          p: 1,
+        h(Base, {
+          p: 2,
           bg: colors[key][5]
         }),
-        h(Text, {
-          size: 6,
-          center: true,
+        h(Base, {
+          fontSize: 0,
+          textAlign: 'center',
           color: colors[key][8]
         }, cap(key))
       )
