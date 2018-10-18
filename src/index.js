@@ -2,25 +2,17 @@
 const chroma = require('chroma-js')
 const hueName = require('./hue-name')
 
-const lums = Array(10)
-  .fill()
+const lums = Array(10).fill()
   .map((x, i) => i)
   .reverse()
   .map(n => n + 0.5)
   .map(n => n / 10)
 
-const createArray = length => {
-  const arr = []
-  for (let i = 0; i < length; i++) {
-    arr.push(i)
-  }
-  return arr
-}
-
 const createHues = length => {
   const hueStep = 360 / length
   return base => {
-    const hues = createArray(length)
+    const hues = Array(length).fill()
+      .map((x, i) => i)
       .map(n => Math.floor((base + (n * hueStep)) % 360))
 
     return hues
