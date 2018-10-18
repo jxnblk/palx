@@ -2,19 +2,11 @@
 const chroma = require('chroma-js')
 const hueName = require('./hue-name')
 
-const lums = [
-  9,
-  8,
-  7,
-  6,
-  5,
-  4,
-  3,
-  2,
-  1,
-  0
-]
-  .map(n => n + .5)
+const lums = Array(10)
+  .fill()
+  .map((x, i) => i)
+  .reverse()
+  .map(n => n + 0.5)
   .map(n => n / 10)
 
 const createArray = length => {
@@ -41,8 +33,13 @@ const desat = n => hex => {
 }
 
 const createBlack = hex => {
-  const d = desat(1/8)(hex)
-  return chroma(d).luminance(.05).hex()
+  const d = desat(1 / 8)(hex)
+  return chroma(d).luminance(lums.slice(-1).pop()).hex()
+}
+
+const createWhite = hex => {
+  const d = desat(1 / 8)(hex)
+  return chroma(d).luminance(lums.slice().shift()).hex()
 }
 
 const createShades = hex => {
@@ -54,7 +51,7 @@ const createShades = hex => {
 // Mappers
 const keyword = hex => {
   const [ hue, sat ] = chroma(hex).hsl()
-  if (sat < .5) {
+  if (sat < 0.5) {
     return 'gray'
   }
   const name = hueName(hue)
@@ -77,12 +74,17 @@ const palx = (hex, options = {}) => {
 
   colors.push({
     key: 'black',
-    value: createBlack('' + color.hex())
+    value: createBlack('' + color.hex()),
+  })
+
+  colors.push({
+    key: 'white',
+    value: createWhite('' + color.hex()),
   })
 
   colors.push({
     key: 'gray',
-    value: createShades(desat(1/8)('' + color.hex()))
+    value: createShades(desat(1 / 8)('' + color.hex())),
   })
 
   hues.forEach(h => {
@@ -90,7 +92,7 @@ const palx = (hex, options = {}) => {
     const key = keyword(c)
     colors.push({
       key,
-      value: createShades('' + c.hex())
+      value: createShades('' + c.hex()),
     })
   })
 
@@ -102,4 +104,3 @@ const palx = (hex, options = {}) => {
 }
 
 module.exports = palx
-
