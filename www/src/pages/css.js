@@ -11,6 +11,7 @@ const toArray = obj => Object.keys(obj).map(key => {
 })
 
 export default props => {
+  if (!props.location.state) return false
   const { colors } = props.location.state
   if (!colors) return 'todo: redirect'
 

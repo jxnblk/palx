@@ -1,6 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import palx from 'palx'
+import palx from '../../../palx/src'
 import { Global } from '@emotion/core'
 import { ThemeProvider } from 'theme-ui'
 import { Link as GatsbyLink } from 'gatsby'
