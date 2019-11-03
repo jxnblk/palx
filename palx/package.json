@@ -1,0 +1,22 @@
+{
+  "name": "palx",
+  "version": "1.1.0",
+  "description": "Automatic UI Color Palette Generator",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "prepublish": "babel src -d dist",
+    "test": "nyc ava"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "ava": "^2.4.0",
+    "nyc": "^14.1.1"
+  },
+  "author": "Brent Jackson <jxnblk@gmail.com>",
+  "dependencies": {
+    "chroma-js": "^2.1.0"
+  }
+}
